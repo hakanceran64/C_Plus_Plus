@@ -3,7 +3,7 @@
 	@Author: Hakan CERAN
 	@Date: 07/10/2022 23:31
 	@Description: Polymorphism example.
-	@Notes:
+	@Notes: 
 */
 
 #include <iostream>
