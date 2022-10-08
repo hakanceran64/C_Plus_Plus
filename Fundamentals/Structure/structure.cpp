@@ -42,18 +42,18 @@ struct person
 
 struct animal {
     int animalId;
-};
+} animals[10];
 
 struct dog : animal {
     int dogId;
-};
+} dogs = {12};
 
 int main(){
 
-    employee hakan = {1, 26, 1000, "Hakan", "CERAN"};
+    struct employee hakan = {1, 26, 1000, "Hakan", "CERAN"};
     cout << "Hakan age: " << hakan.age << endl;
 
-    employee ceran;
+    struct employee ceran;
     ceran = {ceran.id = 1, ceran.age=12};
     cout << "Ceran ID: " << ceran.id << endl;
 
