@@ -17,7 +17,7 @@ struct {
 } myCar1, myCar2;
 
 /// @brief Create Named Structure
-struct Employee
+struct employee
 {
     int id;
     int age;
@@ -26,16 +26,43 @@ struct Employee
     string surname;
 };
 
+struct person
+{
+    int id;
+    int age;
+    string name;
+    string surname;
+
+    struct employee
+    {
+        double wage;
+    } CERAN;
+
+};
+
+struct animal {
+    int animalId;
+};
+
+struct dog : animal {
+    int dogId;
+};
+
 int main(){
 
-    Employee hakan = {1, 26, 1000, "Hakan", "CERAN"};
-
+    employee hakan = {1, 26, 1000, "Hakan", "CERAN"};
     cout << "Hakan age: " << hakan.age << endl;
 
-    Employee ceran;
+    employee ceran;
     ceran = {ceran.id = 1, ceran.age=12};
-
     cout << "Ceran ID: " << ceran.id << endl;
+
+    person hakanceran;
+    hakanceran.CERAN.wage;
+
+    dog pasa;
+    pasa.animalId;
+    pasa.dogId;
 
     return EXIT_SUCCESS;
 }
