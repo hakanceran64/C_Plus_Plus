@@ -7,6 +7,7 @@
 */
 
 #include <iostream>
+#include <cstdlib> // for EXIT_SUCCESS and EXIT_FAILURE
 
 using namespace std;
 
@@ -75,5 +76,6 @@ int main(){
 
 	cout << test[5] << endl;
 
-    return 0;
+	// Best Practice: Your main function should return the value 0 if the program ran normally. (EXIT_SUCCESS = 0)
+    return EXIT_SUCCESS;
 }

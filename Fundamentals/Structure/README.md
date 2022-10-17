@@ -1,15 +1,10 @@
-# Structure
+# Structures (Yapılar)
 
-## Source
-
-- [Aggregate initialization](https://en.cppreference.com/w/cpp/language/aggregate_initialization)
-- [Struct Aggregate Initialization](https://www.learncpp.com/cpp-tutorial/struct-aggregate-initialization/)
-- [W3 Schools](https://www.w3schools.com/cpp/cpp_structs.asp)
-- [Bilgi Günlüğüm](https://www.bilgigunlugum.net/prog/cppprog/cpp_yapi)
+Array'ler aynı tipten elemanları tutmaya yarayan yapılardır. Structures ise farklı  olan türden değişkenleri bir arada tutar.
 
 ---
 
-Struct'ları tükçe olarak yapı veya küme olarak düşünebiliriz.
+Struct'ları tükçe olarak yapı veya küme olarak düşünebiliriz. 
 
 ## Create Structure
 
@@ -77,3 +72,12 @@ Struct'ları tükçe olarak yapı veya küme olarak düşünebiliriz.
     pasa.dogId;
 
 ~~~
+
+---
+
+## Sources (Kaynaklar)
+
+- [Aggregate initialization](https://en.cppreference.com/w/cpp/language/aggregate_initialization)
+- [Struct Aggregate Initialization](https://www.learncpp.com/cpp-tutorial/struct-aggregate-initialization/)
+- [W3 Schools](https://www.w3schools.com/cpp/cpp_structs.asp)
+- [Bilgi Günlüğüm](https://www.bilgigunlugum.net/prog/cppprog/cpp_yapi)
