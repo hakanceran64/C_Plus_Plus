@@ -130,12 +130,72 @@ void vectorElementAccess()
 void vectorModifiers()
 {
     std::vector<int> numbers{1, 2, 3, 4, 5};
+    std::vector<int> otherVec{6, 7, 8, 9, 10, 11};
+
+    // ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ===
+
+    /**
+       *  @brief  Assigns an initializer list to a %vector.
+       *  @param  il  An initializer_list.
+       *
+       *  This function fills a %vector with copies of the elements in the
+       *  initializer list @a il.
+       *
+       *  Note that the assignment completely changes the %vector and
+       *  that the resulting %vector's size is the same as the number
+       *  of elements assigned.
+       */
+    numbers.assign({1, 2, 3, 4, 5, 6});
+    printVector(numbers, "numbers -> initializer list based assign");
+
+    /**
+       *  @brief  Assigns a given value to a %vector.
+       *  @param  n  Number of elements to be assigned.
+       *  @param  val  Value to be assigned.
+       *
+       *  This function fills a %vector with @a __n copies of the given
+       *  value.  Note that the assignment completely changes the
+       *  %vector and that the resulting %vector's size is the same as
+       *  the number of elements assigned.
+       */
+    numbers.assign(5, 100);
+    printVector(numbers, "numbers -> value based assign");
+
+    /**
+       *  @brief  Assigns a range to a %vector.
+       *  @param  first  An input iterator.
+       *  @param  last   An input iterator.
+       *
+       *  This function fills a %vector with copies of the elements in the
+       *  range [first, last).
+       *
+       *  Note that the assignment completely changes the %vector and
+       *  that the resulting %vector's size is the same as the number
+       *  of elements assigned.
+       */
+    numbers.assign(otherVec.begin(), otherVec.end());
+    printVector(numbers, "numbers -> range based assign");
+
+    // ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ===
 
     // Add element at the end
     numbers.push_back(6);
+    printVector(numbers, "numbers -> push_back");
 
+    // ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ===
+
+    /**
+       *  @brief  Removes last element.
+       *
+       *  This is a typical stack operation. It shrinks the %vector by one.
+       *
+       *  Note that no data is returned, and if the last element's
+       *  data is needed, it should be retrieved before pop_back() is
+       *  called.
+       */
     // Delete last element
     numbers.pop_back();
+    printVector(numbers, "numbers -> pop_back");
 
     // ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ===
 
@@ -216,7 +276,7 @@ void vectorModifiers()
        *  @return  An iterator that points to the inserted data.
        *
        *  This function will insert copies of the data in the range
-       *  [__first,__last) into the %vector before the location specified
+       *  [first, last) into the %vector before the location specified
        *  by @a pos.
        *
        *  Note that this kind of operation could be expensive for a
@@ -224,13 +284,108 @@ void vectorModifiers()
        *  consider using std::list.
        */
     // Insert Element -> range (const_iterator position, InputIterator first, InputIterator last)
-    numbers.insert(position, numbers.begin() + 2, numbers.end());
+    numbers.insert(numbers.begin() + 2, otherVec.begin(), otherVec.end());
     printVector(numbers, "numbers -> range");
 
     // ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ===
 
+    /**
+       *  @brief  Remove element at given position.
+       *  @param  position  Iterator pointing to element to be erased.
+       *  @return  An iterator pointing to the next element (or end()).
+       *
+       *  This function will erase the element at the given position and thus
+       *  shorten the %vector by one.
+       *
+       *  Note This operation could be expensive and if it is
+       *  frequently used the user should consider using std::list.
+       *  The user is also cautioned that this function only erases
+       *  the element, and that if the element is itself a pointer,
+       *  the pointed-to memory is not touched in any way.  Managing
+       *  the pointer is the user's responsibility.
+       */
     // Belirli bir indisteki elemanı silmek için.
+    // iterator erase(const_iterator position)
     numbers.erase(numbers.begin() + 2);
+    printVector(numbers, "numbers -> erase");
+
+    /**
+       *  @brief  Remove a range of elements.
+       *  @param  first  Iterator pointing to the first element to be erased.
+       *  @param  last  Iterator pointing to one past the last element to be
+       *                  erased.
+       *  @return  An iterator pointing to the element pointed to by @a __last
+       *           prior to erasing (or end()).
+       *
+       *  This function will erase the elements in the range
+       *  [first, last) and shorten the %vector accordingly.
+       *
+       *  Note This operation could be expensive and if it is
+       *  frequently used the user should consider using std::list.
+       *  The user is also cautioned that this function only erases
+       *  the elements, and that if the elements themselves are
+       *  pointers, the pointed-to memory is not touched in any way.
+       *  Managing the pointer is the user's responsibility.
+       */
+    // Belirli bir aralıktaki elemanları silmek için.
+    // iterator erase(const_iterator first, const_iterator last)
+    numbers.erase(numbers.begin() + 2, numbers.begin() + 12);
+    printVector(numbers, "numbers -> erase");
+
+    // ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ===
+
+    /**
+       *  @brief  Swaps data with another %vector.
+       *  @param  x  A %vector of the same element and allocator types.
+       *
+       *  This exchanges the elements between two vectors in constant time.
+       *  (Three pointers, so it should be quite fast.)
+       *  Note that the global std::swap() function is specialized such that
+       *  std::swap(v1,v2) will feed to this function.
+       *
+       *  Whether the allocators are swapped depends on the allocator traits.
+       */
+    // void swap (vector& x);
+    printVector(numbers, "numbers before swap");
+    printVector(otherVec, "otherVec before swap");
+    numbers.swap(otherVec);
+    printVector(numbers, "numbers after swap");
+    printVector(otherVec, "otherVec after swap");
+
+    // ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ===
+
+    /**
+       *  Erases all the elements.  Note that this function only erases the
+       *  elements, and that if the elements themselves are pointers, the
+       *  pointed-to memory is not touched in any way.  Managing the pointer is
+       *  the user's responsibility.
+       */
+    numbers.clear();
+    printVector(numbers, "numbers -> clear");
+
+    // ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ===
+
+    numbers.assign({1, 2, 3, 4, 5, 6, 7, 8, 9, 0});
+
+    /**
+       *  @brief  Inserts an object in %vector before specified iterator.
+       *  @param  position  A const_iterator into the %vector.
+       *  @param  args  Arguments.
+       *  @return  An iterator that points to the inserted data.
+       *
+       *  This function will insert an object of type T constructed
+       *  with T(std::forward<Args>(args)...) before the specified location.
+       *  Note that this kind of operation could be expensive for a %vector
+       *  and if it is frequently used the user should consider using
+       *  std::list.
+       */
+    numbers.emplace(numbers.begin() + 2, 100);
+    printVector(numbers, "numbers -> emplace");
+
+    // ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ===
+
+    numbers.emplace_back(250);
+    printVector(numbers, "numbers -> emplace_back");
 }
 
 void vectorIterators() {}
