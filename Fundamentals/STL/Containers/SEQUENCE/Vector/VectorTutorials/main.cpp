@@ -1,6 +1,34 @@
 #include <iostream>
+#include <memory>
 #include <string>
 #include <vector>
+
+// [23.2.4.1] construct/copy/destroy -> 480
+// [23.2.4.2] capacity -> 915
+// [23.2.4.3] modifiers -> 1175
+/**
+ * void push_back(const value_type& __x) -> 1187
+ * void push_back(const value_type&& __x) -> 1203
+ * 
+ * reference emplace_back(_Args&&... __args) -> 1212
+ * 
+ * void pop_back() ->1225
+ * 
+ * iterator emplace(const_iterator __position, _Args&&... __args) -> 1248
+ * 
+ * iterator insert(const_iterator __position, const value_type& __x) -> 1263
+ * iterator insert(const_iterator __position, value_type&& __x) -> 1293
+ * iterator insert(const_iterator __position, initializer_list<value_type> __l) -> 1310
+ * iterator insert(const_iterator __position, size_type __n, const value_type& __x) -> 1335
+ * iterator insert(const_iterator __position, _InputIterator __first, _InputIterator __last) -> 1379
+ * 
+ * iterator erase(const_iterator __position) -> 1430
+ * iterator erase(const_iterator __first, const_iterator __last) -> 1457
+ * 
+ * void swap(vector& __x) -> 1480
+ * 
+ * void clear() -> 1498
+ */
 
 // Template kullanarak, herhangi bir türdeki vektörleri ekrana yazdıran bir fonksiyon
 template<typename T>
@@ -107,10 +135,22 @@ void basicVectorOperations()
 
 void vectorElementAccess()
 {
+    // element access
+    /**
+     * operator[]
+     * at
+     * front
+     * back
+     * data
+     */
+
     std::vector<int> numbers{1, 2, 3, 4, 5};
 
+    // reference operator[](size_type n);
+    // const_reference operator[](size_type n) const;
+
     // Access Element of a Vector
-    std::cout << "Element at Index 0: " << numbers.at(0) << std::endl; // throws an exception
+    std::cout << "Element at Index 0: " << numbers.at(30) << std::endl; // throws an exception
     std::cout << "Element at Index 0: " << numbers[0] << std::endl;    // gives garbage value
 
     for (std::vector<int>::iterator it = numbers.begin(); it != numbers.end(); ++it) {
@@ -411,11 +451,22 @@ void vectorFunctions()
     std::cout << "Numbers Capacity: " << numbers.capacity() << std::endl;
 }
 
+using namespace std;
+
+std::vector<int> hakan;
+
+class Hakan;
+
 int main()
 {
     std::cout << std::endl;
 
-    vectorModifiers();
+    std::unique_ptr<int> uniquePtr(new int(42));
+    int *rawPtr = uniquePtr.get();
+    int value = *uniquePtr;
+
+    std::cout << "Raw Pointer: " << rawPtr << std::endl;
+    std::cout << "Value: " << value << std::endl;
 
     return EXIT_SUCCESS;
 }
